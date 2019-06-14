@@ -1,0 +1,10 @@
+﻿     Shapes and Parameters
+
+For the initial part we have 3 classes with the parent class Shape .  So Square, Circle and Triangle extends the class Shape.
+All the private variables that are defined in the Square, triangle and Circle class and their getters and setters are set.
+ We define a default constructor for each of the classes.
+An interface was also defined in class but we had to use an abstract class.
+
+Abstract class in Java is similar to interface except that it can contain default method implementation. An abstract class can have an
+ abstract method without body and it can have methods with implementation also. So using an abstract class, we could pass the parameters.
+
