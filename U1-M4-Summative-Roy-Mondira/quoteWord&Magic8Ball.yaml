@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: Quote of the Day, Word of the Day, and Magic8 Ball service
+  description: Provides a quote of the day, word of the day, and magic 8 ball application.
+servers: 
+  - url: http://localhost:8080
+    description: Rest Api project
+
+paths:
+  /quote:
+    get:
+      summary: Provides a quote of the day.
+      description: Randomly selects a quote of the day for each visitor.
+      parameters: 
+        - name: quote
+          in: path
+          required: false
+          description: Quote of the day.
+          schemas:
+    	   User:
+            properties:
+             author:
+              type: string
+             quote:
+              type: string
+      responses:
+        '200':
+          description: A random quote of the day.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/quote'
+  /word:
+    get:
+      summary: Provides a word of the day.
+      description: Randomly selects a word of the day and provides a corresponding definition for each visitor.
+      parameters: 
+        - name: word
+          in: path
+          required: false
+          description: Word of the day.
+          schema:
+            type: List 
+	    items: 
+	     type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/word'   
+  /Magic8Ball:
+    post:
+      summary: Magic 8 Ball Application
+      description: Randomly selects an answer for the question asked by each visitor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+		question:
+		  type: string
+       responses:
+        '200':
+          description: Success
+           content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  question:
+                    type: string
+                    format: 
+                    answer:
+                    type: string
+         '400':
+          description: Error
+         default:
+          description: Unexpected error
+components:
+  schemas:
+  
+    quote:
+      type: object
+      properties:
+        author:
+          type: string
+        quote:
+          type: string
+          
+      word:
+       type: ArrayList
+       properties:
+        word:
+          type: string
+        definition:
+          type: string
+
+      
+          
+        
+          
+        
+          
+        
+          
