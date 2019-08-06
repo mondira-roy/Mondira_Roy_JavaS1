@@ -1,0 +1,65 @@
+openapi: 3.0.0
+info:
+  title: Echo Service
+  description: A simple service that echoes your input back to you.
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080
+    description: local dev server
+paths:
+  /echo/{input}:
+    get:
+      summary: Echoes input back to user.
+      description: A simple demo service that simply echoes your input back to you.
+      parameters:
+        - name: input
+          in: path
+          required: true
+          description: The value to be echoed.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The string you sent to the service
+          content:
+            application/json:
+              schema:
+                type: string
+  /echo/number/{input}:
+    get:
+      summary: Echoes back a number.
+      description: A simple dempo service that simply echoes a number back to you as long as it is in the range 1-10.
+      parameters:
+        - name: input
+          in: path
+          required: true
+          description: The value you want to be echoed back. 
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 10
+      responses:
+        '200':
+          description: The value you sent to the server
+          content:
+            application/json:
+              schema:
+                type: integer
+        '422':
+          description: You must enter a number a number between 1 and 10.
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            
+            
+            
+            

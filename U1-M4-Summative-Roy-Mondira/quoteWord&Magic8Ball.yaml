@@ -14,9 +14,7 @@ paths:
       description: Randomly selects a quote of the day for each visitor.
       parameters: 
         - name: quote
-          in: path
-          required: false
-          description: Quote of the day.
+         description: Quote of the day.
           schemas:
     	   User:
             properties:
@@ -37,8 +35,6 @@ paths:
       description: Randomly selects a word of the day and provides a corresponding definition for each visitor.
       parameters: 
         - name: word
-          in: path
-          required: false
           description: Word of the day.
           schema:
             type: List 
