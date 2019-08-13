@@ -1,0 +1,263 @@
+openapi: 3.0.0
+info:
+  title: Mondira-Roy-U2M2-Summative
+  description: Simple Twitter Service
+  version: 0.0.1
+servers: 
+  - url: http://localhost:8889
+    description: web service
+paths: 
+  /posts:
+    post:
+      summary: Creates a new POST entry with the given information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Posts'
+      responses:
+        '201':
+          description: A Post object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Posts'
+        '400':
+          description: Invalid request syntax.
+        '422':
+          description: Incomplete Post information. Some required fields missing.
+    
+    get:
+      summary: get all posts
+      responses:
+        '200':
+          description: Generate a post list JSON object.
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Posts'
+  
+    put:
+      summary: Updated the entry for the post with the given ID.
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          description: ID of the Post you would like to update.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Posts'
+      responses:
+        '200':
+          description: Post successfully updated.
+        '422':
+          description: Post ID on path must match the ID in the Post object.
+    
+    delete:
+      summary: Deletes the entry for the POst with the given ID.
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          description: ID of the Post you would like to delete.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Task successfully deleted.
+  /posts/id}:            
+    get:
+      summary: get Posts by Id
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          description: id of the Post
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Generate a post list JSON object.
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Posts'
+    
+  /posts/user/{poster}:
+    get:
+      summary: get Post By Poster_name
+      parameters: 
+        - name: poster
+          in: path
+          required: true
+          description: poster_name of the Post
+          schema:
+            type: string
+            
+      responses:
+        '200':
+          description: Generate a customer JSON object.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/Posts'
+               
+ 
+  /comments:
+    post:
+      summary: Creates a new COMMENT entry with the given information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comments'
+      responses:
+        '201':
+          description: A Comment object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comments'
+        '400':
+          description: Invalid request syntax.
+        '422':
+          description: Incomplete Task information. Some required fields missing.
+    
+    get:
+      summary: get all comments
+      responses:
+        '200':
+          description: Generate a task list JSON object.
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Comments'
+  
+    put:
+      summary: Updated the entry for the Comment with the given ID.
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          description: ID of the Comment you would like to update.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comments'
+      responses:
+        '200':
+          description: Task successfully updated.
+        '422':
+          description: Task ID on path must match the ID in the Task object.
+    
+    delete:
+      summary: Deletes the entry for the Comment with the given ID.
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          description: ID of the Task you would like to delete.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Task successfully deleted.
+  /comments/{commentId}:            
+    get:
+      summary: get comments by Id
+      parameters: 
+        - name: commentId
+          in: path
+          required: true
+          description: id of the comment
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Generate a comment list JSON object.
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Comments'
+    
+  /comments/{postId}:
+    get:
+      summary: get comments By Post_id
+      parameters: 
+        - name: postId
+          in: path
+          required: true
+          description: poster_Id of the Post
+          schema:
+            type: string
+            
+      responses:
+        '200':
+          description: Generate a customer JSON object.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/Comments'
+                            
+ 
+    
+components:
+  schemas:
+  
+    Posts:
+      type: object
+      properties:
+        post_id:
+          type: number
+        post_date:
+          type: object
+        posterName:
+          type: object
+        post:
+          type: string
+    Comments:
+      type: object
+      properties:
+        comment_id:
+          type: number
+        post_id:
+          type: number
+        commenterName:
+          type: object
+        comment_date:
+          type: object
+        comment:
+          type: string
+          
+    
